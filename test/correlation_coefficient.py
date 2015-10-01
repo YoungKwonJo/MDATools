@@ -21,10 +21,23 @@ def round2(x,i):
 def mean(x):
   xsum=0.
   for i in x   :  xsum+=i
-  if len(x)==0 : return false
+  if len(x)==0 : return False
   else         : return (xsum/len(x))
 
-def correlation_coefficient(x,y,meanX,meanY):
+def correlation_coefficient(data):
+  x =[]
+  y =[]
+  for i in data:
+    x.append( i[0] )
+    y.append( i[1] )
+  return correlation_coefficientA2(x,y)
+
+def correlation_coefficientA2(x,y):
+  meanX = mean(x)
+  meanY = mean(y)
+  return correlation_coefficientA4(x,y,meanX,meanY)
+
+def correlation_coefficientA4(x,y,meanX,meanY):
   sumXY=0.
   sumX =0.
   sumY =0.
@@ -35,28 +48,16 @@ def correlation_coefficient(x,y,meanX,meanY):
     sumX  +=x_*x_
     sumY  +=y_*y_
 
-  return sumXY/(sqrt(sumX)*sqrt(sumY))
+  return [sumXY/(sqrt(sumX)*sqrt(sumY)),meanX,meanY]
 
 #data = [ [1,2], [2,3], [5,2], [3,7], [5,2], [3,2] ]
 data =[]
 for i in range(100):
   data.append([i,i*i])
 
-x =[]
-y =[]
-
-for i in data:
-#  print str(i)
-  x.append( i[0] )
-  y.append( i[1] )
-
+r = correlation_coefficient(data)
 print str(data)
-
-meanX = mean(x)
-meanY = mean(y)
-r = correlation_coefficient(x,y,meanX,meanY)
-
-print "r = "+str(round(r*100))+"%, meanX="+str(round2(meanX,2))+", meanY="+str(round2(meanY,2))
+print "r = "+str(round(r[0]*100))+"%, meanX="+str(round2(r[1],2))+", meanY="+str(round2(r[2],2))
 
 
 
