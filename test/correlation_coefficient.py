@@ -19,8 +19,7 @@ def round2(x,i):
   else     : return round(x*(10*i))/(10*i)
 
 def mean(x):
-  xsum=0.
-  for i in x   :  xsum+=i
+  xsum=sum(x)
   if len(x)==0 : return False
   else         : return (xsum/len(x))
 
